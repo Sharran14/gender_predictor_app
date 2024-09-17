@@ -56,13 +56,13 @@ The app uses the [Genderize.io API](https://genderize.io/) to fetch gender predi
 
 - **Base URL**: [Genderize](https://api.genderize.io)
 - **Endpoint URL**: [Name](https://api.genderize.io?name=<name>)
-- 
+
 ### Response Fields
 
 - **Name**: The name used for prediction.
 - **Gender**: Predicted gender (male, female, unknown).
 - **Probability**: Probability of the prediction.
-- 
+
 ## Screenshot
 
 Here’s a screenshots of the designed UI based on the provided template:
