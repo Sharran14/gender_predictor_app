@@ -43,15 +43,26 @@ The Gender Predictor app uses the Genderize.io API to predict the gender of a gi
    flutter run
 
 ## Usage
-
-The web application allows users to:
-- View list of blog posts (API integration with jsonplaceholder)
-- Search and Change Entries of the Displayed Data
+1. Launch the App: The app will start with a splash screen that includes an animated logo and text.
+2. Enter a Name: Type a name into the text field.
+3. Predict Gender: Click the "Predict" button to get the gender and probability.
+4. View Results: The results will be displayed below the button, showing the predicted gender and the probability as a percentage.
 
 ## API Integration
 
-The frontend interacts with APIs for fetching blog posts and categories using the provided routes from [jsonplaceholder](https://jsonplaceholder.typicode.com/).
+The app uses the [Genderize.io API](https://genderize.io/) to fetch gender predictions. Ensure you follow their API usage guidelines and handle API responses appropriately.
 
+### API Endpoint
+
+- **Base URL**: [Genderize](https://api.genderize.io)
+- **Endpoint URL**: [Name](https://api.genderize.io?name=<name>)
+- 
+### Response Fields
+
+- **Name**: The name used for prediction.
+- **Gender**: Predicted gender (male, female, unknown).
+- **Probability**: Probability of the prediction.
+- 
 ## Screenshot
 
 Here’s a screenshots of the designed UI based on the provided template:
