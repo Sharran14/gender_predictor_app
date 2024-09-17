@@ -77,8 +77,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       controller: _nameController,
                       decoration: InputDecoration(
                         hintText: "Name",
+                        hintStyle: TextStyle(color: Colors.grey),
                         border: OutlineInputBorder(),
                       ),
+                       style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
                     ),
                   ),
                   ElevatedButton(
@@ -88,92 +90,106 @@ class _HomeScreenState extends State<HomeScreen> {
                         BlocProvider.of<GenderBloc>(context).add(FetchGender(name));
                       }
                     },
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.white, backgroundColor: const Color.fromARGB(255, 117, 0, 159), // Text color
+                      minimumSize: Size(100, 50), // Button size
+                      padding: EdgeInsets.symmetric(vertical: 15), // Padding inside the button
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10), // Button corner radius
+                      ),
+                    ),
                     child: Text("Predict"),
                   ),
                   SizedBox(height: 30), // Space between the button and the result
 
-                  BlocBuilder<GenderBloc, GenderState>(
-                    builder: (context, state) {
-                      if (state is GenderInitial) {
-                        return Column(
-                          children: [
-                            SizedBox(height: 30), // Space to move the text lower
-                            Text(
-                              "Enter a name to predict gender.",
-                              style: TextStyle(color: Colors.grey[700], fontSize: 16), // Update color
-                              textAlign: TextAlign.center,
-                            ),
-                          ],
-                        );
-                      } else if (state is GenderLoading) {
-                        return CircularProgressIndicator();
-                      } else if (state is GenderLoaded) {
-                        return Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                             Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  "Name: ",
-                                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black),
-                                ),
-                                Text(
-                                  _nameController.text,
-                                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.black),
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 20),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  "Gender: ",
-                                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  state.gender.toUpperCase(),
-                                  style: TextStyle(fontSize: 30, color: Colors.black, fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 10), // Space between rows
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  "Probability: ",
-                                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  "${(state.probability * 100).toStringAsFixed(0)}%",
-                                  style: TextStyle(fontSize: 30, color: Colors.black, fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
-                          ],
-                        );
-                      } else if (state is GenderError) {
-                        return Text(
-                          state.message,
-                          style: TextStyle(color: Colors.red),
-                        );
-                      } else {
-                        return Container();
-                      }
-                    },
-                  ),
+              BlocBuilder<GenderBloc, GenderState>(
+                builder: (context, state) {
+                    if (state is GenderInitial) {
+                      return Column(
+                    children: [
+                    SizedBox(height: 30), // Space to move the text lower
+                    Text(
+                      "Enter a name to predict gender.",
+                      style: TextStyle(color: Colors.grey[700], fontSize: 16), // Update color
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                );
+                } else if (state is GenderLoading) {
+                    return CircularProgressIndicator();
+                } else if (state is GenderLoaded) {
+                    return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                // Display the entered name
+                Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                Text(
+                  "Name: ",
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black),
+                ),
+                Text(
+                  _nameController.text, // Display the name entered by the user
+                  style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+            SizedBox(height: 10), // Space between rows
+
+            // Display the predicted gender
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "Gender: ",
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  state.gender.toUpperCase(),
+                  style: TextStyle(fontSize: 30, color: Colors.black, fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+            SizedBox(height: 10), // Space between rows
+
+            // Display the predicted probability
+            Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "Probability: ",
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black),
+              ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "${(state.probability * 100).toStringAsFixed(0)}%",
+                style: TextStyle(fontSize: 30, color: Colors.black, fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
+        ],
+      );
+    } else if (state is GenderError) {
+      return Text(
+        state.message,
+        style: TextStyle(color: Colors.red),
+      );
+    } else {
+      return Container();
+    }
+  },
+)
+,
                 ],
               ),
             ),
