@@ -69,4 +69,4 @@ The app uses the [Genderize.io API](https://genderize.io/) to fetch gender predi
 
 Here’s a screenshots of the designed UI based on the provided template:
 
-<img style="align-content: center;" alt="Demo" src="assets/Screenshot_1.png">
+<img style="align-content: center;" alt="Demo" src="assets/Screenshot_1.png" height="400"> <img style="align-content: center;" alt="Demo" src="assets/Screenshot_2.png" height="400"> <img style="align-content: center;" alt="Demo" src="assets/Screenshot_3.png" height="400"> <img style="align-content: center;" alt="Demo" src="assets/Screenshot_4.png" height="400"> 
