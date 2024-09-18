@@ -1,6 +1,7 @@
 # Gender-To-Name Prediction App (GenderName Genie)
 
 The GenderName Genie is a mobile application designed to predict the gender of a person based on their name. This app is developed based on Flutter framework, and BLoC state management.
+
 <img style="align-content: center;" alt="Demo" src="assets/mockup.png">
 ## Project Overview
 
