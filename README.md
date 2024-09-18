@@ -20,7 +20,7 @@ The Gender Predictor app uses the Genderize.io API to predict the gender of a gi
 ## Tech Stack
 
 - **Frontend Framework**: Flutter
-- **State Management**: flutter_bloc
+- **State Management**: BLoC 
 - **UI Design**: Modern and Minimalist
 - **Design Pattern**: Observer Pattern
 
