@@ -34,7 +34,7 @@ The Gender Predictor app uses the Genderize.io API to predict the gender of a gi
    git clone https://github.com/Sharran14/gender_predictor_app.git
 2. Navigate to the project directory:
    ```bash
-   cd arrivo-web-app
+   cd gender_predictor_app
 3. Install dependencies:
    ```bash
    flutter pub get
